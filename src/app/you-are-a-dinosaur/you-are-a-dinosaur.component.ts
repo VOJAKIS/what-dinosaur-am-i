@@ -44,7 +44,18 @@ export class YouAreADinosaurComponent implements OnInit {
       dinosaurName: new FormControl(),
     });
 
-    this.age = Number(this.route.snapshot.paramMap.get('age'));
+    const age = this.route.snapshot.paramMap.get('age');
+    if (!Number.isNaN(age)) {
+      this.router.navigate([`/`]);
+      this.age = Number.NaN;
+      return;
+    }
+
+    this.age = Number(age);
+
+    if (this.age < 0) {
+      this.router.navigate([`/`]);
+    }
   }
 
   ngOnInit(): void {
