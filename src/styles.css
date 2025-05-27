@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Taken from Figma */
+/* https://www.figma.com/design/g2jiOfoA6k1o2pOnA6Tnla/AmIADinosaur?node-id=0-1&p=f&t=gdO0jgLIttsbP3NC-0 */
+:root {
+  --color-primary: #4db200;
+  --color-dark: #282828;
+  --text-color-primary: #ffffff;
+  --text-color-danger: #ff452c;
+  --border-radius: 20px;
+  --font-size-title: 64pt;
+}
+
 @font-face {
   font-family: Comfortaa;
   src: url(assets/fonts/Comfortaa-VariableFont_wght.ttf);
