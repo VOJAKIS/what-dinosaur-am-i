@@ -4,6 +4,7 @@
 /* https://www.figma.com/design/g2jiOfoA6k1o2pOnA6Tnla/AmIADinosaur?node-id=0-1&p=f&t=gdO0jgLIttsbP3NC-0 */
 :root {
   --color-primary: #4db200;
+  /* --color-primary: #337500; */
   --color-dark: #282828;
   --text-color-primary: #ffffff;
   --text-color-danger: #ff452c;
@@ -18,4 +19,8 @@
 
 * {
   font-family: "Comfortaa", "Arial";
+}
+
+.background-primary {
+  background-color: var(--color-primary);
 }

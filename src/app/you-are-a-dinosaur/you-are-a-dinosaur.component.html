@@ -1,0 +1,44 @@
+<app-wrapper>
+  <div>
+    <h5 class="text-center text-white">
+      {{ title }}
+    </h5>
+
+    <form [formGroup]="form">
+      <!-- <div>
+        <label for="dinosaurName" class="form-label text-white mb-0"
+          >Your dinosaur</label
+        >
+        <input
+          id="dinosaurName"
+          formControlName="dinosaurName"
+          class="form-control rounded-4 border-0"
+          placeholder="Your dinosaur's name"
+          readonly
+        />
+      </div> -->
+      <div
+        class="d-flex justify-content-center align-items-center text-light mt-4"
+      >
+        <div class="fw-bold display-4">{{ dinosaur?.name }}</div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        @if (dinosaur && randomDinosaurSrc) {
+        <img
+          [ngSrc]="randomDinosaurSrc"
+          style="max-width: calc(2rem + 80vw); max-height: calc(2rem + 40Hw)"
+          width="500"
+          height="400"
+          class="rounded-4"
+          priority
+        />
+        }
+      </div>
+    </form>
+
+    <div class="d-flex justify-content-center align-items center mt-3">
+      <app-go-back-button></app-go-back-button>
+    </div>
+  </div>
+</app-wrapper>

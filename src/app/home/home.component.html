@@ -1,0 +1,77 @@
+<app-wrapper>
+  <div>
+    <div class="d-flex justify-content-center">
+      <img
+        class="mb-2 me-2"
+        src="images/logo2.png"
+        style="width: calc(2rem + 4vw)"
+      />
+    </div>
+    <h1 class="text-center text-white display-3 mt-4 px-2">
+      {{ title }}
+    </h1>
+
+    <form
+      class="mt-2 d-flex justify-content-center"
+      (submit)="onSubmit()"
+      [formGroup]="form"
+    >
+      <div>
+        <div class="input-group">
+          <input
+            id="age"
+            formControlName="age"
+            type="number"
+            class="form-control rounded-start-4 border-0"
+            placeholder="Enter your age"
+          />
+          <button class="btn btn-primary btn-sm rounded-end-4" type="submit">
+            Submit
+          </button>
+        </div>
+
+        <!-- <div class="text-center my-2 text-light">OR</div>
+
+        <div class="input-group">
+          <input
+            id="birthYear"
+            formControlName="birthYear"
+            type="number"
+            class="form-control rounded-start-4 border-0"
+            placeholder="Enter your year of birth"
+          />
+          <button class="btn btn-primary btn-sm rounded-end-4" type="submit">
+            Submit
+          </button>
+        </div> -->
+      </div>
+    </form>
+    @if (formErrors && form.touched && form.dirty) {
+    <div class="d-flex justify-content-center text-light mt-1">
+      <!-- Required -->
+      @if (ageFormControl.errors![`required`]) {
+      <div>
+        <i class="bi bi-info-circle"></i>
+        Please, enter your age.
+      </div>
+      }
+      <!-- Minimum -->
+      @if (ageFormControl.errors![`min`]) {
+      <div>
+        <i class="bi bi-info-circle"></i>
+        You can not have negative age!
+      </div>
+      }
+      <!-- Maximum -->
+      @if (ageFormControl.errors![`max`]) {
+      <div>
+        <i class="bi bi-info-circle"></i>
+        <!-- Maximum age ever recored is {{ config.maximumAgeEverRecordedYears }}!
+        <br /> -->
+        Maximum age in the company is {{ config.maximumAgeYears }}!
+      </div>
+      }
+    </div>
+    }
+  </div>
+</app-wrapper>
