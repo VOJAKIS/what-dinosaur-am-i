@@ -11,64 +11,44 @@
       {{ title }}
     </h1>
 
-    <form
-      class="mt-2 d-flex justify-content-center"
-      (submit)="onSubmit()"
-      [formGroup]="form"
-    >
+    <form class="mt-2" (submit)="onSubmit()" [formGroup]="form">
       <div>
         <div class="input-group">
           <input
-            id="age"
-            formControlName="age"
+            id="ageOrYearOfBirth"
+            formControlName="ageOrYearOfBirth"
             type="number"
             class="form-control rounded-start-4 border-0"
-            placeholder="Enter your age"
+            placeholder="Enter your age or year of birth"
           />
           <button class="btn btn-primary btn-sm rounded-end-4" type="submit">
             Submit
           </button>
         </div>
-
-        <!-- <div class="text-center my-2 text-light">OR</div>
-
-        <div class="input-group">
-          <input
-            id="birthYear"
-            formControlName="birthYear"
-            type="number"
-            class="form-control rounded-start-4 border-0"
-            placeholder="Enter your year of birth"
-          />
-          <button class="btn btn-primary btn-sm rounded-end-4" type="submit">
-            Submit
-          </button>
-        </div> -->
       </div>
     </form>
+
     @if (formErrors && form.touched && form.dirty) {
     <div class="d-flex justify-content-center text-light mt-1">
       <!-- Required -->
-      @if (ageFormControl.errors![`required`]) {
+      @if (ageOrYearOfBirthFormControl.errors![`required`]) {
       <div>
         <i class="bi bi-info-circle"></i>
-        Please, enter your age.
+        Please, enter your age or year of birth
       </div>
       }
       <!-- Minimum -->
-      @if (ageFormControl.errors![`min`]) {
+      @if (ageOrYearOfBirthFormControl.errors![`min`]) {
       <div>
         <i class="bi bi-info-circle"></i>
         You can not have negative age!
       </div>
       }
       <!-- Maximum -->
-      @if (ageFormControl.errors![`max`]) {
+      @if (ageOrYearOfBirthFormControl.errors![`max`]) {
       <div>
         <i class="bi bi-info-circle"></i>
-        <!-- Maximum age ever recored is {{ config.maximumAgeEverRecordedYears }}!
-        <br /> -->
-        Maximum age in the company is {{ config.maximumAgeYears }}!
+        Maximum year of birth is {{ year }}!
       </div>
       }
     </div>

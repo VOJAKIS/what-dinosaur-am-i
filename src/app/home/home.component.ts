@@ -25,17 +25,17 @@ export class HomeComponent {
 
   constructor(private router: Router) {
     this.form = new FormGroup({
-      age: new FormControl(undefined, [
+      ageOrYearOfBirth: new FormControl(undefined, [
         Validators.min(0),
-        Validators.max(this.config.maximumAgeYears),
+        Validators.max(this.year),
         Validators.required,
       ]),
     });
   }
 
-  get age() {
-    const age = this.ageFormControl.value;
-    return age;
+  get ageOrYearOfBirth() {
+    const ageOrYearOfBirth = this.ageOrYearOfBirthFormControl.value;
+    return ageOrYearOfBirth;
   }
 
   get year() {
@@ -44,13 +44,13 @@ export class HomeComponent {
     return year;
   }
 
-  get ageFormControl() {
-    const formControl = this.form.controls[`age`];
+  get ageOrYearOfBirthFormControl() {
+    const formControl = this.form.controls[`ageOrYearOfBirth`];
     return formControl;
   }
 
   get formErrors() {
-    const errors = this.ageFormControl.errors;
+    const errors = this.ageOrYearOfBirthFormControl.errors;
     return errors !== null;
   }
 
@@ -62,10 +62,11 @@ export class HomeComponent {
       return;
     }
 
-    if (2000 > this.year - this.age) {
-      this.router.navigate([`dinosaur/${this.age}`]);
+    if (this.ageOrYearOfBirth > this.config.maximumAgeEverRecordedYears) {
+      const year = this.year - this.ageOrYearOfBirth;
+      this.router.navigate([`dinosaur/${year}`]);
     } else {
-      this.router.navigate([`not-a-dinosaur`]);
+      this.router.navigate([`dinosaur/${this.ageOrYearOfBirth}`]);
     }
   }
 }

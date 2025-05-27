@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WrapperComponent } from '../common/components/wrapper/wrapper.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -8,7 +8,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
-import { Dinosaur, dinosaurs } from '../common/model/dinosaur';
+import {
+  age38,
+  Dinosaur,
+  dinosaurs,
+  embryo,
+  skeleton,
+} from '../common/model/dinosaur';
 import { GoBackButtonComponent } from '../common/components/go-back-button/go-back-button.component';
 import { config } from '../common/config';
 
@@ -30,7 +36,6 @@ export class YouAreADinosaurComponent implements OnInit {
   title = 'You are a Dinosaur!';
 
   age: number;
-
   dinosaur?: Dinosaur;
   form: FormGroup;
 
@@ -70,11 +75,26 @@ export class YouAreADinosaurComponent implements OnInit {
   }
 
   calculateDinosaur() {
+    if (this.age === 38) {
+      this.dinosaur = age38;
+      return;
+    }
+
+    if (this.age > config.maximumAgeEverRecordedYears) {
+      this.dinosaur = skeleton;
+      return;
+    }
+
+    if (this.age < 25) {
+      this.dinosaur = embryo;
+      return;
+    }
+
     const numberOfDinosaurs = dinosaurs.length;
     const dinosaurIndex = this.mapRange(
       this.age,
-      26,
-      this.config.maximumAgeYears + 1,
+      0,
+      this.config.maximumAgeEverRecordedYears + 1,
       0,
       numberOfDinosaurs
     );
@@ -82,7 +102,6 @@ export class YouAreADinosaurComponent implements OnInit {
     const dinosaur = dinosaurs.at(dinosaurIndex);
     if (dinosaur) {
       this.dinosaur = dinosaur;
-      this.form.controls[`dinosaurName`].setValue(this.dinosaur.name);
     }
   }
 
