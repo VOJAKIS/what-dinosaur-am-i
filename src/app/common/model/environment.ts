@@ -1,5 +1,6 @@
 export interface Environment {
-  maximumAgeYears: number;
-  maximumAgeEverRecordedYears: number;
   dinosaurImagesPath: string;
+  gitHubAuthorUrl: string;
+  maximumAgeEverRecordedYears: number;
+  maximumAgeYears: number;
 }

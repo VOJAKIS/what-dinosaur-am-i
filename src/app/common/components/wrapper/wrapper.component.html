@@ -3,4 +3,12 @@
   [style.height]="'100svh'"
 >
   <ng-content></ng-content>
+
+  <!-- Watermark -->
+  <span
+    class="position-absolute bottom-0 text-micro px-1 cursor-pointer text-warning"
+    (click)="openLink()"
+    title="Author"
+    >&#64;AdamValašťan</span
+  >
 </div>

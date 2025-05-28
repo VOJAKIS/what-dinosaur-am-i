@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-wrapper',
@@ -6,4 +7,8 @@ import { Component } from '@angular/core';
   templateUrl: './wrapper.component.html',
   styleUrl: './wrapper.component.css',
 })
-export class WrapperComponent {}
+export class WrapperComponent {
+  openLink() {
+    window.open(environment.gitHubAuthorUrl);
+  }
+}

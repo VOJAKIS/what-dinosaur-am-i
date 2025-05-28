@@ -4,7 +4,7 @@
 /* https://www.figma.com/design/g2jiOfoA6k1o2pOnA6Tnla/AmIADinosaur?node-id=0-1&p=f&t=gdO0jgLIttsbP3NC-0 */
 :root {
   --color-primary: #4db200;
-  /* --color-primary: #337500; */
+  --color-secondary: ##6500b2;
   --color-dark: #282828;
   --text-color-primary: #ffffff;
   --text-color-danger: #ff452c;
@@ -21,6 +21,28 @@
   font-family: "Comfortaa", "Arial";
 }
 
+.text-micro {
+  font-size: xx-small;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .background-primary {
   background-color: var(--color-primary);
+}
+
+.border-radius {
+  border-radius: var(--border-radius) !important;
+}
+
+.border-radius-start {
+  border-top-left-radius: var(--border-radius) !important;
+  border-bottom-left-radius: var(--border-radius) !important;
+}
+
+.border-radius-end {
+  border-top-right-radius: var(--border-radius) !important;
+  border-bottom-right-radius: var(--border-radius) !important;
 }
