@@ -17,6 +17,7 @@ import {
 } from '../common/model/dinosaur';
 import { GoBackButtonComponent } from '../common/components/go-back-button/go-back-button.component';
 import { environment } from '../../environments/environment';
+import { getRandomInt, mapRange } from '../common/functions/math';
 
 @Component({
   selector: 'app-you-are-a-dinosaur',
@@ -61,16 +62,13 @@ export class YouAreADinosaurComponent implements OnInit {
     this.calculateDinosaur();
   }
 
-  get randomDinosaurSrc() {
+  get randomDinosaurImageSrc() {
     if (!this.dinosaur) {
       return;
     }
 
     const numberOfDinosaurImages = this.dinosaur.imageSrcs.length;
-    const dinosaurImageRandomIndex = this.getRandomInt(
-      0,
-      numberOfDinosaurImages
-    );
+    const dinosaurImageRandomIndex = getRandomInt(0, numberOfDinosaurImages);
 
     const dinosaurImageSrc = this.dinosaur.imageSrcs.at(
       dinosaurImageRandomIndex
@@ -103,7 +101,7 @@ export class YouAreADinosaurComponent implements OnInit {
     }
 
     const numberOfDinosaurs = dinosaurs.length;
-    const dinosaurIndex = this.mapRange(
+    const dinosaurIndex = mapRange(
       this.age,
       0,
       environment.maximumAgeEverRecordedYears + 1,
@@ -115,32 +113,5 @@ export class YouAreADinosaurComponent implements OnInit {
     if (dinosaur) {
       this.dinosaur = dinosaur;
     }
-  }
-
-  /**
-   * Premapuje hodnotu x z intervalu [a1, a2] na interval [b1, b2].
-   *
-   * @param x Vstupná hodnota, ktorá sa má premapovať.
-   * @param a1 Dolná hranica vstupného intervalu.
-   * @param a2 Horná hranica vstupného intervalu.
-   * @param b1 Dolná hranica výstupného intervalu.
-   * @param b2 Horná hranica výstupného intervalu.
-   * @returns Hodnota premapovaná do výstupného intervalu.
-   */
-  mapRange(x: number, a1: number, a2: number, b1: number, b2: number): number {
-    // Lineárna interpolácia
-    // Najprv normalizujeme x do rozsahu [0, 1] v rámci vstupného intervalu
-    const normalizedX = (x - a1) / (a2 - a1);
-
-    // Potom túto normalizovanú hodnotu škálujeme na výstupný interval
-    const mappedValue = b1 + normalizedX * (b2 - b1);
-
-    return mappedValue;
-  }
-
-  getRandomInt(min: number, max: number) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
   }
 }
