@@ -16,7 +16,7 @@ import {
   skeleton,
 } from '../common/model/dinosaur';
 import { GoBackButtonComponent } from '../common/components/go-back-button/go-back-button.component';
-import { config } from '../common/config';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-you-are-a-dinosaur',
@@ -31,11 +31,9 @@ import { config } from '../common/config';
   styleUrl: './you-are-a-dinosaur.component.css',
 })
 export class YouAreADinosaurComponent implements OnInit {
-  config = config;
-
   title = 'You are a Dinosaur!';
 
-  age: number;
+  age?: number;
   dinosaur?: Dinosaur;
   form: FormGroup;
 
@@ -44,18 +42,19 @@ export class YouAreADinosaurComponent implements OnInit {
       dinosaurName: new FormControl(),
     });
 
-    const age = this.route.snapshot.paramMap.get('age');
-    if (!Number.isNaN(age)) {
+    const ageParameter = this.route.snapshot.paramMap.get('age');
+    const age = Number(ageParameter);
+    const _if_ = Number.isInteger(age);
+    if (!_if_) {
       this.router.navigate([`/`]);
-      this.age = Number.NaN;
       return;
     }
 
-    this.age = Number(age);
-
-    if (this.age < 0) {
+    if (age < 0) {
       this.router.navigate([`/`]);
     }
+
+    this.age = age;
   }
 
   ngOnInit(): void {
@@ -86,12 +85,14 @@ export class YouAreADinosaurComponent implements OnInit {
   }
 
   calculateDinosaur() {
+    if (!this.age) return;
+
     if (this.age === 38) {
       this.dinosaur = age38;
       return;
     }
 
-    if (this.age > config.maximumAgeEverRecordedYears) {
+    if (this.age > environment.maximumAgeEverRecordedYears) {
       this.dinosaur = skeleton;
       return;
     }
@@ -105,7 +106,7 @@ export class YouAreADinosaurComponent implements OnInit {
     const dinosaurIndex = this.mapRange(
       this.age,
       0,
-      this.config.maximumAgeEverRecordedYears + 1,
+      environment.maximumAgeEverRecordedYears + 1,
       0,
       numberOfDinosaurs
     );

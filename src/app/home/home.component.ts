@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WrapperComponent } from '../common/components/wrapper/wrapper.component';
-import { config } from '../common/config';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +20,6 @@ export class HomeComponent {
   title = 'Am I a Dinosaur?';
 
   form: FormGroup;
-
-  config = config;
 
   constructor(private router: Router) {
     this.form = new FormGroup({
@@ -62,7 +60,7 @@ export class HomeComponent {
       return;
     }
 
-    if (this.ageOrYearOfBirth > this.config.maximumAgeEverRecordedYears) {
+    if (this.ageOrYearOfBirth > environment.maximumAgeEverRecordedYears) {
       const year = this.year - this.ageOrYearOfBirth;
       this.router.navigate([`dinosaur/${year}`]);
     } else {
