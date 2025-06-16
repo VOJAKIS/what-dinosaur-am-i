@@ -1,2 +1,2 @@
-# Which Dinosaur am I?
-Application to determine which dinosaur you are.
+# What Dinosaur am I?
+Application to determine what kind of dinosaur you are.
