@@ -89,7 +89,7 @@ export class YouAreADinosaurComponent implements OnInit {
   }
 
   calculateDinosaur() {
-    if (!this.age) return;
+    if (this.age === undefined) return;
 
     if (this.age === 38) {
       this.dinosaur = age38;
