@@ -17,11 +17,11 @@ import { environment } from '../../environments/environment';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  title = 'Am I a Dinosaur?';
+  title = 'What Dinosaur am I?';
 
   form: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(private readonly router: Router) {
     this.form = new FormGroup({
       ageOrYearOfBirth: new FormControl(undefined, [
         Validators.min(0),

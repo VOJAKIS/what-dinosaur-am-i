@@ -1,12 +1,14 @@
 {
-  "name": "am-i-a-dinosaur",
+  "name": "what-dinosaur-am-i",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "github-build": "ng build --configuration production --base-href https://vojakis.github.io/what-dinosaur-am-i/",
+    "github-deploy": "npx angular-cli-ghpages --dir=dist/what-dinosaur-am-i/browser --no-silent"
   },
   "private": true,
   "dependencies": {
