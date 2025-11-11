@@ -38,7 +38,10 @@ export class YouAreADinosaurComponent implements OnInit {
   dinosaur?: Dinosaur;
   form: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     this.form = new FormGroup({
       dinosaurName: new FormControl(),
     });
@@ -64,7 +67,9 @@ export class YouAreADinosaurComponent implements OnInit {
 
   get randomDinosaurImageSrc() {
     if (!this.dinosaur) {
-      return;
+      const message = `Dinosaur is not available.`;
+      console.error(message);
+      throw new Error(message);
     }
 
     const numberOfDinosaurImages = this.dinosaur.imageSrcs.length;
@@ -75,8 +80,9 @@ export class YouAreADinosaurComponent implements OnInit {
     );
 
     if (!dinosaurImageSrc) {
-      console.error(`Dinosaur image src is not available.`);
-      throw new Error();
+      const message = `Dinosaur image src is not available.`;
+      console.error(message);
+      throw new Error(message);
     }
 
     return dinosaurImageSrc;
