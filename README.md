@@ -19,3 +19,13 @@ It was this meme:
 ## Deployment tutorial
 
 https://senoritadeveloper.medium.com/deploy-an-angular-application-to-github-pages-65573194595a
+
+1. Build for GitHub
+```sh
+npm run github-build
+```
+
+2. Deploy to GitHub
+```sh
+npm run github-deploy
+```
